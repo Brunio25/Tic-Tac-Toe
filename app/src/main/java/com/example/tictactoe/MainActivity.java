@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -237,5 +238,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.textP2.setText("Player 2 = " + p2Points);
         textP1.setTypeface(null, Typeface.BOLD);
         textP2.setTypeface(null, Typeface.NORMAL);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("numRounds", numRounds);
+        outState.putInt("p1Points", p1Points);
+        outState.putInt("p2Points", p2Points);
+        outState.putBoolean("player1", player1);
+    }
+
+    /**
+     * This method is called after {@link #onStart} when the activity is
+     * being re-initialized from a previously saved state, given here in
+     * <var>savedInstanceState</var>.  Most implementations will simply use {@link #onCreate}
+     * to restore their state, but it is sometimes convenient to do it here
+     * after all of the initialization has been done or to allow subclasses to
+     * decide whether to use your default implementation.  The default
+     * implementation of this method performs a restore of any view state that
+     * had previously been frozen by {@link #onSaveInstanceState}.
+     *
+     * <p>This method is called between {@link #onStart} and
+     * {@link #onPostCreate}. This method is called only when recreating
+     * an activity; the method isn't invoked if {@link #onStart} is called for
+     * any other reason.</p>
+     *
+     * @param savedInstanceState the data most recently supplied in {@link #onSaveInstanceState}.
+     * @see #onCreate
+     * @see #onPostCreate
+     * @see #onResume
+     * @see #onSaveInstanceState
+     */
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        numRounds = savedInstanceState.getInt("numRounds");
+        p1Points = savedInstanceState.getInt("p1Points");
+        p2Points = savedInstanceState.getInt("p2Points");
+        player1 = savedInstanceState.getBoolean("player1");
     }
 }
