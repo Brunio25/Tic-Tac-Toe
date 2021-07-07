@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else {
                     p2Points++;
                     Toast.makeText(this, "Player 2 won!", Toast.LENGTH_SHORT).show();
-                    this.textP2.setText("Player 2 = " + p1Points);
+                    this.textP2.setText("Player 2 = " + p2Points);
                 }
 
                 clearBoard();
